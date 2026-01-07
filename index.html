@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        #keyboard {
+            width: 90vw;
+            max-width: 1200px;
+            padding: 6vh 2vw;
+            background-color: #222;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+            box-sizing: border-box;
+        }
+
+        #keypad {
+            background: linear-gradient(180deg,#ddd,#eee);
+            display: flex;
+            position: relative;
+            width: 100%;
+            height: 32vh;
+            border-radius: 8px;
+            overflow: visible;
+            padding: 0 4px;
+            box-sizing: border-box;
+        }
+
+        .octave, #keypad > div {
+            position: relative;
+            box-sizing: border-box;
+            transition: all 0.1s ease;
+            user-select: none;
+        }
+
+        .whiteKey {
+            flex: 1 1 0;
+            min-width: 0;
+            height: 100%;
+            background-color: #fff;
+            border: 1px solid #999;
+            border-radius: 0 0 8px 8px;
+            margin: 0 1px;
+            z-index: 1;
+            box-shadow: inset 0 -6px 10px rgba(0,0,0,0.12);
+        }
+
+        .blackKey {
+            width: 4.2%;
+            max-width: 48px;
+            min-width: 20px;
+            height: 58%;
+            background-color: #000;
+            border-radius: 0 0 6px 6px;
+            z-index: 3;
+            position: absolute;
+            top: 0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.6);
+        }
+
+        .octave {
+            display: flex;
+            flex: 1 1 0;
+            min-width: 0;
+            height: 100%;
+            position: relative;
+        }
+        .octave .whiteKey { flex: 1 1 0; min-width: 0; margin: 0 1px; }
+
+        .octave .blackKey { height: 58%; }
+        .octave .blackKey.csharp { left: 8.5%; }
+        .octave .blackKey.dsharp { left: 22.5%; }
+        .octave .blackKey.fsharp { left: 49%; }
+        .octave .blackKey.gsharp { left: 63%; }
+        .octave .blackKey.asharp { left: 77%; }
+
+        .whiteKey:hover {
+            background-color: #f0f0f0;
+            box-shadow: inset 0 6px 12px rgba(0,0,0,0.25);
+            transform: translateY(1px);
+        }
+
+        .blackKey:hover {
+            background-color: #333;
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.6);
+            transform: translateY(1px);
+        }
+
+        .whiteKey:active {
+            background-color: #e9e9e9;
+            box-shadow: inset 0 8px 14px rgba(0,0,0,0.35);
+            transform: translateY(2px);
+        }
+        .blackKey:active {
+            background-color: #222;
+            box-shadow: inset 0 6px 12px rgba(0,0,0,0.7);
+            transform: translateY(2px);
+        }
+
+        .blackKey::after {
+            content: attr(data-note);
+            position: absolute;
+            bottom: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            line-height: 1;
+            pointer-events: none;
+            opacity: 0.95;
+        }
+        .whiteKey::after { color: #222; }
+        .blackKey::after { color: #fff; }
+
+    </style>
+</head>
+<body>
+    <div id="keyboard">
+        <div id="keypad">
+            <div class="octave">
+                <div class="whiteKey" data-note="C"></div>
+                <div class="whiteKey" data-note="D"></div>
+                <div class="whiteKey" data-note="E"></div>
+                <div class="whiteKey" data-note="F"></div>
+                <div class="whiteKey" data-note="G"></div>
+                <div class="whiteKey" data-note="A"></div>
+                <div class="whiteKey" data-note="B"></div>
+                <div class="blackKey csharp" data-note="C#"></div>
+                <div class="blackKey dsharp" data-note="Eb"></div>
+                <div class="blackKey fsharp" data-note="F#"></div>
+                <div class="blackKey gsharp" data-note="G#"></div>
+                <div class="blackKey asharp" data-note="Bb"></div>
+            </div>
+            <div class="octave">
+                <div class="whiteKey" data-note="C"></div>
+                <div class="whiteKey" data-note="D"></div>
+                <div class="whiteKey" data-note="E"></div>
+                <div class="whiteKey" data-note="F"></div>
+                <div class="whiteKey" data-note="G"></div>
+                <div class="whiteKey" data-note="A"></div>
+                <div class="whiteKey" data-note="B"></div>
+                <div class="blackKey csharp" data-note="C#"></div>
+                <div class="blackKey dsharp" data-note="Eb"></div>
+                <div class="blackKey fsharp" data-note="F#"></div>
+                <div class="blackKey gsharp" data-note="G#"></div>
+                <div class="blackKey asharp" data-note="Bb"></div>
+            </div>
+            <div class="octave">
+                <div class="whiteKey" data-note="C"></div>
+                <div class="whiteKey" data-note="D"></div>
+                <div class="whiteKey" data-note="E"></div>
+                <div class="whiteKey" data-note="F"></div>
+                <div class="whiteKey" data-note="G"></div>
+                <div class="whiteKey" data-note="A"></div>
+                <div class="whiteKey" data-note="B"></div>
+                <div class="blackKey csharp" data-note="C#"></div>
+                <div class="blackKey dsharp" data-note="Eb"></div>
+                <div class="blackKey fsharp" data-note="F#"></div>
+                <div class="blackKey gsharp" data-note="G#"></div>
+                <div class="blackKey asharp" data-note="Bb"></div>
+            </div>
+            <div class="octave">
+                <div class="whiteKey" data-note="C"></div>
+                <div class="whiteKey" data-note="D"></div>
+                <div class="whiteKey" data-note="E"></div>
+                <div class="whiteKey" data-note="F"></div>
+                <div class="whiteKey" data-note="G"></div>
+                <div class="whiteKey" data-note="A"></div>
+                <div class="whiteKey" data-note="B"></div>
+                <div class="blackKey csharp" data-note="C#"></div>
+                <div class="blackKey dsharp" data-note="Eb"></div>
+                <div class="blackKey fsharp" data-note="F#"></div>
+                <div class="blackKey gsharp" data-note="G#"></div>
+                <div class="blackKey asharp" data-note="Bb"></div>
+                <div class="whiteKey" data-note="C"></div>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
